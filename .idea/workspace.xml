@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f62513df-18f6-4e95-a578-aeb3dd46bc30" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/listview.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/listview.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/newview.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/newview.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,38 +244,38 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585328701756" />
-    <state width="1345" height="178" key="GridCell.Tab.0.bottom" timestamp="1585329420867">
+    <state width="1345" height="134" key="GridCell.Tab.0.bottom" timestamp="1585341281839">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="178" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1585329420867" />
-    <state width="1345" height="178" key="GridCell.Tab.0.center" timestamp="1585329420867">
+    <state width="1345" height="134" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1585341281839" />
+    <state width="1345" height="134" key="GridCell.Tab.0.center" timestamp="1585341281838">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="178" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1585329420867" />
-    <state width="1345" height="178" key="GridCell.Tab.0.left" timestamp="1585329420867">
+    <state width="1345" height="134" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1585341281838" />
+    <state width="1345" height="134" key="GridCell.Tab.0.left" timestamp="1585341281838">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="178" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1585329420867" />
-    <state width="1345" height="178" key="GridCell.Tab.0.right" timestamp="1585329420867">
+    <state width="1345" height="134" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1585341281838" />
+    <state width="1345" height="134" key="GridCell.Tab.0.right" timestamp="1585341281839">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="178" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1585329420867" />
-    <state width="1147" height="223" key="GridCell.Tab.1.bottom" timestamp="1585327739698">
+    <state width="1345" height="134" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1585341281839" />
+    <state width="1345" height="223" key="GridCell.Tab.1.bottom" timestamp="1585340756682">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1147" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1585327739698" />
-    <state width="1147" height="223" key="GridCell.Tab.1.center" timestamp="1585327739698">
+    <state width="1345" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1585340756682" />
+    <state width="1345" height="223" key="GridCell.Tab.1.center" timestamp="1585340756682">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1147" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1585327739698" />
-    <state width="1147" height="223" key="GridCell.Tab.1.left" timestamp="1585327739697">
+    <state width="1345" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1585340756682" />
+    <state width="1345" height="223" key="GridCell.Tab.1.left" timestamp="1585340756682">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1147" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1585327739697" />
-    <state width="1147" height="223" key="GridCell.Tab.1.right" timestamp="1585327739698">
+    <state width="1345" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1585340756682" />
+    <state width="1345" height="223" key="GridCell.Tab.1.right" timestamp="1585340756682">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1147" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1585327739698" />
+    <state width="1345" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1585340756682" />
     <state x="184" y="6" key="SettingsEditor" timestamp="1585322496642">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -282,10 +284,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1585313724208" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1585317267149">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1585338286355">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1585317267149" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1585338286355" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

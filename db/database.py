@@ -13,24 +13,31 @@ class mysql_connection:
         self.cursor = self.mydb.cursor()
 
     def new_value(self, name, truckmodel, manufacturer, plate):
-        sql = "INSERT INTO customers (name, truckmodel, manufacturer, plate) VALUES (%s, %s, %s, %s)"
+        sql_new = "INSERT INTO customers (name, truckmodel, manufacturer, plate) VALUES (%s, %s, %s, %s)"
 
         # use user entered values
         value = (str(name), str(truckmodel), str(manufacturer), str(plate))
-        self.cursor.execute(sql, value)
+        self.cursor.execute(sql_new, value)
 
         self.mydb.commit()
 
         print(self.cursor.rowcount, "record inserted.")
 
     def read_values(self):
-        self.cursor.execute("SELECT * FROM tksdb")
+        self.cursor.execute("SELECT * FROM customers")
         values_list = self.cursor.fetchall()
 
-        for x in values_list:
-            print(x)
 
+        return values_list
 
+    def delete_value(self, index):
+        text_del = "DELETE FROM customers WHERE id = "
+        id_del = " '12' "
+        sql_del = text_del + id_del
 
+        print(sql_del)
 
+        self.connect()
+        self.cursor.execute(sql_del)
 
+        self.mydb.commit()

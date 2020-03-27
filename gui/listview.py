@@ -1,9 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from db.database import *
 
 class Ui_ListView(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
         MainWindow.setFixedSize(682, 560)
 
         font = QtGui.QFont()
@@ -11,49 +11,53 @@ class Ui_ListView(object):
         font.setBold(True)
         font.setWeight(75)
         MainWindow.setFont(font)
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        self.tableView = QtWidgets.QTableView(self.centralwidget)
-        self.tableView.setGeometry(QtCore.QRect(10, 40, 471, 491))
-        self.tableView.setObjectName("tableView")
+
+        self.customerTable = QtWidgets.QTableWidget(self.centralwidget)
+        self.customerTable.setGeometry(QtCore.QRect(10, 40, 471, 491))
+
+        self.customerTable.setColumnCount(6)
+
+        self.customerTable.setHorizontalHeaderLabels(['ID', 'Nome', 'Veículo', 'Marca', 'Placa', 'Horário'])
+
+
+
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 10, 131, 16))
-        self.label.setObjectName("label")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(510, 50, 141, 31))
-        self.pushButton.setStyleSheet("background-color: rgb(0, 255, 0);")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(510, 100, 141, 31))
-        self.pushButton_2.setStyleSheet("background-color: rgb(255, 0, 0);")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setGeometry(QtCore.QRect(510, 460, 141, 61))
+        self.addButton = QtWidgets.QPushButton(self.centralwidget)
+        self.addButton.setGeometry(QtCore.QRect(510, 50, 141, 31))
+        self.addButton.setStyleSheet("background-color: rgb(0, 255, 0);")
+        self.delButton = QtWidgets.QPushButton(self.centralwidget)
+        self.delButton.setGeometry(QtCore.QRect(510, 100, 141, 31))
+        self.delButton.setStyleSheet("background-color: rgb(255, 0, 0);")
+        self.valButton = QtWidgets.QPushButton(self.centralwidget)
+        self.valButton.setGeometry(QtCore.QRect(510, 460, 141, 61))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
-        self.pushButton_3.setFont(font)
-        self.pushButton_3.setStyleSheet("background-color: rgb(170, 170, 255);")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_4.setGeometry(QtCore.QRect(510, 150, 141, 31))
+        self.valButton.setFont(font)
+        self.valButton.setStyleSheet("background-color: rgb(170, 170, 255);")
+        self.upButton = QtWidgets.QPushButton(self.centralwidget)
+        self.upButton.setGeometry(QtCore.QRect(510, 150, 141, 31))
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
-        self.pushButton_4.setFont(font)
-        self.pushButton_4.setStyleSheet("background-color: rgb(255, 255, 127);")
-        self.pushButton_4.setObjectName("pushButton_4")
+        self.upButton.setFont(font)
+        self.upButton.setStyleSheet("background-color: rgb(255, 255, 127);")
+
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox.setGeometry(QtCore.QRect(500, 29, 171, 501))
-        self.groupBox.setObjectName("groupBox")
+
         self.groupBox.raise_()
-        self.tableView.raise_()
+        self.customerTable.raise_()
         self.label.raise_()
-        self.pushButton.raise_()
-        self.pushButton_2.raise_()
-        self.pushButton_3.raise_()
-        self.pushButton_4.raise_()
+        self.addButton.raise_()
+        self.delButton.raise_()
+        self.valButton.raise_()
+        self.upButton.raise_()
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 682, 23))
@@ -70,10 +74,10 @@ class Ui_ListView(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Lista de veículos"))
         self.label.setText(_translate("MainWindow", "Lista de veículos"))
-        self.pushButton.setText(_translate("MainWindow", "Adicionar"))
-        self.pushButton_2.setText(_translate("MainWindow", "Remover"))
-        self.pushButton_3.setText(_translate("MainWindow", "Cobrar"))
-        self.pushButton_4.setText(_translate("MainWindow", "Atualizar dados"))
+        self.addButton.setText(_translate("MainWindow", "Adicionar"))
+        self.delButton.setText(_translate("MainWindow", "Remover"))
+        self.valButton.setText(_translate("MainWindow", "Cobrar"))
+        self.upButton.setText(_translate("MainWindow", "Atualizar dados"))
         self.groupBox.setTitle(_translate("MainWindow", "Ações"))
 
 
@@ -85,3 +89,26 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
         """list view construction"""
         super(ListView, self).__init__(parent)  # call init of QMainWindow, or QWidget or whatever)
         self.setupUi(self)  # call the function that actually does all the stuff you set up in QtDesigner
+
+        # codes and connections
+        self.addButton.clicked.connect(self.list)
+        self.delButton.clicked.connect(self.delete_value)
+
+    def list(self):
+        mysql_connection.connect(self)
+        list = mysql_connection.read_values(self)
+
+        for row in list:
+            inx = list.index(row)
+            self.customerTable.insertRow(inx)
+            self.customerTable.setItem(inx, 0, QtWidgets.QTableWidgetItem(str(row[4])))
+            self.customerTable.setItem(inx, 1, QtWidgets.QTableWidgetItem(str(row[0])))
+            self.customerTable.setItem(inx, 2, QtWidgets.QTableWidgetItem(str(row[1])))
+            self.customerTable.setItem(inx, 3, QtWidgets.QTableWidgetItem(str(row[2])))
+            self.customerTable.setItem(inx, 4, QtWidgets.QTableWidgetItem(str(row[3])))
+            self.customerTable.setItem(inx, 5, QtWidgets.QTableWidgetItem(str(row[4])))
+
+    def delete_value(self):
+        index = 12
+
+        mysql_connection.delete_value(self, index)

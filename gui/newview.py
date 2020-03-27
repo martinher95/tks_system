@@ -91,16 +91,17 @@ class NewView(QtWidgets.QMainWindow, Ui_NewWindow):
 
     def commit_value(self):
         name = self.nameline.text()
-        car = self.nameline.text()
-        brand = self.nameline.text()
-        plate = self.nameline.text()
+        car = self.carline.text()
+        brand = self.brandline.text()
+        plate = self.plateline.text()
 
         try:
             mysql_connection.connect(self)
         except Exception as error:
-            print("Erro de conexao de banco de dados: " + error)
+            print("Erro de conexao de banco de dados: " + str(error))
 
         try:
             mysql_connection.new_value(self, name, car, brand, plate)
         except Exception as error:
-            print("Erro de entrada de novo valor: " + error)
+            print("Erro de entrada de novo valor: " + str(error))
+
