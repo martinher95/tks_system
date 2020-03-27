@@ -12,18 +12,18 @@ class Ui_NewWindow(object):
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(20, 70, 241, 20))
-        self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_2.setGeometry(QtCore.QRect(20, 120, 141, 20))
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.lineEdit_3 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_3.setGeometry(QtCore.QRect(20, 170, 141, 20))
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.lineEdit_4 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_4.setGeometry(QtCore.QRect(20, 220, 141, 20))
-        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.nameline = QtWidgets.QLineEdit(self.centralwidget)
+        self.nameline.setGeometry(QtCore.QRect(20, 70, 241, 20))
+        self.nameline.setObjectName("lineEdit")
+        self.carline = QtWidgets.QLineEdit(self.centralwidget)
+        self.carline.setGeometry(QtCore.QRect(20, 120, 141, 20))
+        self.carline.setObjectName("lineEdit_2")
+        self.brandline = QtWidgets.QLineEdit(self.centralwidget)
+        self.brandline.setGeometry(QtCore.QRect(20, 170, 141, 20))
+        self.brandline.setObjectName("lineEdit_3")
+        self.plateline = QtWidgets.QLineEdit(self.centralwidget)
+        self.plateline.setGeometry(QtCore.QRect(20, 220, 141, 20))
+        self.plateline.setObjectName("lineEdit_4")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(20, 50, 91, 16))
         self.label.setObjectName("label")
@@ -90,5 +90,17 @@ class NewView(QtWidgets.QMainWindow, Ui_NewWindow):
         self.pushButton.clicked.connect(self.commit_value)
 
     def commit_value(self):
-        mysql_connection.connect(self)
-        mysql_connection.new_value(self)
+        name = self.nameline.text()
+        car = self.nameline.text()
+        brand = self.nameline.text()
+        plate = self.nameline.text()
+
+        try:
+            mysql_connection.connect(self)
+        except Exception as error:
+            print("Erro de conexao de banco de dados: " + error)
+
+        try:
+            mysql_connection.new_value(self, name, car, brand, plate)
+        except Exception as error:
+            print("Erro de entrada de novo valor: " + error)

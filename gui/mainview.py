@@ -11,6 +11,8 @@ class Ui_MainWindow(object):
         # configuracao inicial da janela
         MainWindow.setObjectName("MainWindow")
         MainWindow.setFixedSize(802, 580)
+        MainWindow.setWindowOpacity(0.965)
+        MainWindow.setStyle(QtWidgets.QStyleFactory.create("Fusion"))
 
         # configuracao inicial da tela
         self.centralwidget = QtWidgets.QWidget(MainWindow)
