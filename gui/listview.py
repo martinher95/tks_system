@@ -84,12 +84,6 @@ class Ui_ListView(object):
 
 
 # construcao de classe contendo o codigo base para as açoes da listview
-def delete_value(index):
-    try:
-        delete_value(str(index))
-    except Exception as e:
-        print(str(e))
-
 
 class ListView(QtWidgets.QMainWindow, Ui_ListView):
     """Main window creation"""
@@ -104,7 +98,7 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
 
         # codes and connections
         self.addButton.clicked.connect(self.new_show)
-        self.delButton.clicked.connect(delete_value)
+        self.delButton.clicked.connect(self.delete_value)
         self.upButton.clicked.connect(self.update)
 
     def new_show(self):
@@ -127,3 +121,16 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
             self.customerTable.setItem(inx, 4, QtWidgets.QTableWidgetItem(str(row[3])))
             self.customerTable.setItem(inx, 5, QtWidgets.QTableWidgetItem(str(row[4])))
             self.customerTable.setItem(inx, 6, QtWidgets.QTableWidgetItem(str(row[5])))
+
+    def delete_value(self, index):
+        # check if some row is selected
+        # for i in range(self.customerTable.rowCount()):
+
+        row = self.customerTable.currentRow()
+        col = 0
+        index = self.customerTable.item(row, col).text()
+
+        try:
+            db.database.delete_value(str(index))
+        except Exception as e:
+            print(str(e))

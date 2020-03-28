@@ -40,7 +40,7 @@ def read_values(db='tcsdb'):
     return values_list
 
 
-def delete_value(db='tcsdb'):
+def delete_value(index, db='tcsdb'):
     db = connect(db)
     cursor = db.cursor()
 
@@ -48,7 +48,7 @@ def delete_value(db='tcsdb'):
 
     try:
         # execute the query
-        cursor.execute(sql_del, 13)
+        cursor.execute(sql_del, index)
 
         # accept the change
         db.commit()
