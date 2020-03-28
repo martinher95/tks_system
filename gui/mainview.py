@@ -1,6 +1,6 @@
 import sys
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 from gui.listview import *
 from gui.newview import *
 
@@ -108,6 +108,3 @@ class myMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def show_newview(self):
         self.new_view.show()
-
-
-
