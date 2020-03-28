@@ -23,8 +23,6 @@ class Ui_ListView(object):
 
         self.customerTable.setHorizontalHeaderLabels(['ID', 'Nome', 'Veículo', 'Marca', 'Placa', 'Data', 'Hora'])
 
-
-
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 10, 131, 16))
         self.addButton = QtWidgets.QPushButton(self.centralwidget)
@@ -91,7 +89,7 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
         """list view construction"""
         super(ListView, self).__init__(parent)  # call init of QMainWindow, or QWidget or whatever)
         self.setupUi(self)  # call the function that actually does all the stuff you set up in QtDesigner
-        self.list()  # list all db entries for first
+        self.update()  # list all db entries for first
 
         # objects and variables
         self.new_view = NewView()
@@ -134,3 +132,5 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
             db.database.delete_value(str(index))
         except Exception as e:
             print(str(e))
+
+        self.update()

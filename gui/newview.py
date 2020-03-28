@@ -84,6 +84,12 @@ class NewView(QtWidgets.QMainWindow, Ui_NewWindow):
         """list view construction"""
         super(NewView, self).__init__(parent)  # call init of QMainWindow, or QWidget or whatever)
         self.setupUi(self)  # call the function that actually does all the stuff you set up in QtDesigner
+        
+        brands = ["Ford", "VW", "Scania", "Mercedes Benz", "Iveco", "Volvo", "MAN",
+                   "Hiunday", "JAC", "DAF", "Sinotruk"]
+        completer = QtWidgets.QCompleter(brands, self.brandline)
+        completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
+        self.brandline.setCompleter(completer)
 
         # codes and connections
         self.pushButton.clicked.connect(self.check_values)
