@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import db.database
-from gui.newview import NewView
+from gui import mainview
 
 
 class Ui_ListView(object):
@@ -20,8 +20,18 @@ class Ui_ListView(object):
         self.customerTable.setGeometry(QtCore.QRect(10, 40, 471, 491))
 
         self.customerTable.setColumnCount(7)
-
         self.customerTable.setHorizontalHeaderLabels(['ID', 'Nome', 'Veículo', 'Marca', 'Placa', 'Data', 'Hora'])
+
+        self.customerTable.horizontalHeader()
+        header1 = self.customerTable.horizontalHeader()
+        header1.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        header1.setSectionResizeMode(1, QtWidgets.QHeaderView.Stretch)
+
+        font = QtGui.QFont()
+        font.setPointSize(7)
+        font.setBold(True)
+        font.setWeight(75)
+        self.customerTable.setFont(font)
 
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 10, 131, 16))
@@ -91,8 +101,9 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
         self.setupUi(self)  # call the function that actually does all the stuff you set up in QtDesigner
         self.update()  # list all db entries for first
 
+
         # objects and variables
-        self.new_view = NewView()
+        self.new_view = mainview.NewView()
 
         # codes and connections
         self.addButton.clicked.connect(self.new_show)
@@ -105,6 +116,7 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
     def update(self):
         self.customerTable.setRowCount(0)
         self.list()
+        QtCore.QTimer.singleShot(2500, self.update)
 
     def list(self):
         list = db.database.read_values()
@@ -120,7 +132,7 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
             self.customerTable.setItem(inx, 5, QtWidgets.QTableWidgetItem(str(row[4])))
             self.customerTable.setItem(inx, 6, QtWidgets.QTableWidgetItem(str(row[5])))
 
-    def delete_value(self, index):
+    def delete_value(self):
         # check if some row is selected
         # for i in range(self.customerTable.rowCount()):
 
