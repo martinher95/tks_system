@@ -36,8 +36,14 @@ def read_values(db='tcsdb'):
 
     cursor.execute("SELECT * FROM customers")
     values_list = cursor.fetchall()
+    print(len(values_list))
 
-    return values_list
+    values_list_inv = tuple()
+
+    for i in range(len(values_list), 0, -1):
+        values_list_inv += (values_list[i-1], )
+
+    return values_list_inv
 
 
 def delete_value(index, db='tcsdb'):

@@ -17,7 +17,7 @@ class NewView(QtWidgets.QMainWindow, Ui_NewWindow):
         self.setupUi(self)  # call the function that actually does all the stuff you set up in QtDesigner
 
         brands = ["Ford", "VW", "Scania", "Mercedes Benz", "Iveco", "Volvo", "MAN",
-                   "Hiunday", "JAC", "DAF", "Sinotruk"]
+                   "Hiunday", "JAC", "DAF", "Sinotruk", "Renault", "GM"]
         completer = QtWidgets.QCompleter(brands, self.brandline)
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.brandline.setCompleter(completer)
@@ -58,10 +58,10 @@ class NewView(QtWidgets.QMainWindow, Ui_NewWindow):
 
         try:
             db.database.new_value(name, car, brand, plate, date, hour)
+            main_window.update()
         except Exception as error:
             print("Erro de entrada de novo valor: " + str(error))
 
-        main_window.update()
 
 
 class Ui_MainWindow(object):
@@ -115,6 +115,7 @@ class Ui_MainWindow(object):
         self.groupBox.setGeometry(QtCore.QRect(9, 185, 235, 370))
         self.customerTable = QtWidgets.QTableWidget(self.groupBox)  # init da tabela de andamento
         self.customerTable.setGeometry(QtCore.QRect(10, 20, 215, 340))
+        self.customerTable.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         self.customerTable.setColumnCount(3)
         self.customerTable.setHorizontalHeaderLabels(['Nome', 'Data', 'Hora'])
         self.customerTable.horizontalHeader()
@@ -177,7 +178,8 @@ class myMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def update(self):
         self.customerTable.setRowCount(0)
         self.list()
-        QtCore.QTimer.singleShot(2500, self.update)
+
+        QtCore.QTimer.singleShot(10000, self.update)
 
     def list(self):
         list = db.database.read_values()
