@@ -4,8 +4,24 @@ import time
 
 import db.database
 from gui import mainview
+from gui.chargeview import Ui_Charge
 
 item = []
+
+
+class ChargeDialog(QtWidgets.QMainWindow, Ui_Charge):
+    """Main window creation"""
+    def __init__(self, parent=None):
+
+        """list view construction"""
+        super(ChargeDialog, self).__init__(parent)  # call init of QMainWindow, or QWidget or whatever)
+        self.setupUi(self)  # call the function that actually does all the stuff you set up in QtDesigner
+
+        # connections
+
+    def set_values(self, hours, value):
+        self.label_hours.setText(str(hours))
+        self.label_value.setText("R$" + str(value))
 
 
 class Ui_ListView(object):
@@ -103,14 +119,15 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
     def __init__(self, parent=None):
         """list view construction"""
         super(ListView, self).__init__(parent)  # call init of QMainWindow, or QWidget or whatever)
-        self.index = ''
         self.setupUi(self)  # call the function that actually does all the stuff you set up in QtDesigner
         self.update()  # list all db entries for first
+        self.charge_view = ChargeDialog()
         global item_id
         global item
         self.item_date = ''
         self.item_name = ''
         self.item_hour = ''
+        self.index = ''
 
         # objects and variables
         self.new_view = mainview.NewView()
@@ -183,7 +200,6 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
         print(diff_date)
 
         # hour difference
-
         # old
         old_hours = int(old_hour[0:2])
         old_min = int(old_hour[3:])
@@ -197,7 +213,8 @@ class ListView(QtWidgets.QMainWindow, Ui_ListView):
         diff_hours = [abs(cur_hours-old_hours), abs(cur_min-old_min)]
         print(diff_hours)
 
-
+        self.charge_view.show()
+        self.charge_view.set_values(diff_hours, 20)
 
     def take_item(self):
         global item_id
